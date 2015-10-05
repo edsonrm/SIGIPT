@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: SIGPT
+        psr4_prefix: SIGPT
+        src_path: app
