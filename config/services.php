@@ -14,10 +14,10 @@ return [
 	|
 	*/
 
-	'mailgun' => [
+	/*'mailgun' => [
 		'domain' => '',
 		'secret' => '',
-	],
+	],*/
 
 	'mandrill' => [
 		'secret' => '',
@@ -33,5 +33,10 @@ return [
 		'model'  => 'User',
 		'secret' => '',
 	],
+	'mailgun' => [
+	'domain' => env('MAILGUN_DOMAIN'),
+	'secret' => env('MAILGUN_PASS'),
+],
 
 ];
+

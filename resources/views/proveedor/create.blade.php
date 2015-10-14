@@ -9,7 +9,7 @@
 
         <div class="row-fluid">
                 <div class="span8">
-{!! Form::open(['route' => 'turista.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'proveedor.store', 'method' => 'POST']) !!}
                    <h1>Registrate</h1>
                     @if (count($errors) > 0)
                 <br />
@@ -24,21 +24,39 @@
                 @endif
                 <div class="alert alert-sucess">
                             <ul>
-                                {{ $mensaje }}
+                             {{ $mensaje }}
                             </ul>
                         </div>  
                     <div class="hero-unit">    
                             
-                   
+           
             
+                {!! Form::label('Nombre de la empresa: ') !!}
+                {!! Form::text('nombre_empresa', null,['class' => 'input-xlarge', 'placeholder' => 'Ingresa el nombre de tu empresa']) !!}
+                <br />
+                {!! Form::label('Descripción de la empresa: ') !!}
+                {!! Form::textarea('descripcion_empresa',null ,['size' => '40x5', 'placeholder' => 'Describe brevemente la actividad de tu empresa']) !!}
+                <br />
+                {!! Form::label('Nit: ') !!}
+                {!! Form::text('nit', null,['class' => 'input-xlarge', 'placeholder' => 'Número de Identificación Tributaria']) !!}
+                <br />
+                {!! Form::label('Tipo de empresa: ') !!}
+                {!! Form::select('rol', $roles, $selected2) !!}
+                <br />
+                {!! Form::label('Ubicación (Municipio): ') !!}
+                {!! Form::select('ubicacion', $municipios, $selected) !!}
+                <br />
+
+                <hr>
+                <h3>Datos Representante legal</h3>
                 {!! Form::label('Nombre: ') !!}
-                {!! Form::text('nombre', null,['class' => 'form-control', 'placeholder' => 'Ingrese su nombre']) !!}
+                {!! Form::text('nombre_representante', null,['class' => 'input-xlarge', 'placeholder' => 'Ingresa el nombre']) !!}
                 <br />
                 {!! Form::label('Apellido: ') !!}
-                {!! Form::text('apellido', null,['class' => 'form-control', 'placeholder' => 'Ingrese su apellido']) !!}
+                {!! Form::text('apellido_representante', null,['class' => 'input-xlarge', 'placeholder' => 'Ingresa el apellido']) !!}
                 <br />
-                {!! Form::label('Telefono: ') !!}
-                {!! Form::text('telefono', null,['class' => 'form-control', 'placeholder' => 'Ingrese número de contacto']) !!}
+                {!! Form::label('Cédula de ciudadania: ') !!}
+                {!! Form::text('cedula', null,['class' => 'input-xlarge', 'placeholder' => 'Ingresa el número de cédula']) !!}
                 <br />
                 {!! Form::label('Correo electrónico: ') !!}
                 {!! Form::email('email', null,['class' => 'form-control', 'placeholder' => 'turista@correo.com']) !!}
@@ -51,7 +69,7 @@
                 <br />
                 <label class="checkbox"><input name="acepto" type="checkbox" >He leído y acepto los <a href='#myModal'  data-toggle="modal">términos y condiciones</a> de SIGIPT</label>
                
-            
+
                 <br />
                 {!! Form::submit('Registrar',['class' => 'btn btn-success']); !!}
                 
@@ -96,15 +114,9 @@ El titular se reserva el derecho de solicitar la registración del Visitante par
                 </div>
 
             
-<hr>
+
                
                 <br />
-                
-                <div class="hero-unit">
-                <h3>Datos de la empresa</h3>
-                
-                {!!Form::file('image')!!}
-                </div>
 
                 <style type="text/css">
                     .the-icons {list-style-type: none;margin: 0 0 10px 30px;}

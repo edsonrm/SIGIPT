@@ -4,10 +4,8 @@ use SIGPT\Http\Requests;
 use SIGPT\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Validator;
 
-class TuristaController extends Controller {
+class ProveedorController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,9 +14,7 @@ class TuristaController extends Controller {
 	 */
 	public function index()
 	{
-		$result=\DB::table('turistas')->get();
-		dd($result);
-		return $result;
+		//
 	}
 
 	/**
@@ -28,15 +24,14 @@ class TuristaController extends Controller {
 	 */
 	public function create()
 	{
-	/*	$turistas = Turista::all()->lists('id', 'username');
-		$selected = array();
-		return view('turista.create', compact('turistas', 'selected'));*/
 		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');
 		$municipios= array(0 => "Seleccione ... ") + $municipios;
 		$selected = array();
+		$roles =\DB::table('rol')->lists('rol', 'id');
+		$roles= array(0 => "Seleccione ... ") + $roles;
+		$selected2 = array();
 		$mensaje="Registra tus datos";
-		return view('turista.create', compact('municipios', 'selected'))->with('mensaje', $mensaje);
-
+		return view('proveedor.create', compact('municipios', 'selected'), compact('roles', 'selected2'))->with('mensaje', $mensaje);
 	}
 
 	/**
@@ -46,17 +41,20 @@ class TuristaController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		//$data=$request->all();		
-		
 		$data  = $request->all();
 		$rules = array(
-			'nombre' 			=> 'required|min:5|max:20|alpha_num',
-			'apellido' 			=> 'required|min:5|max:20|alpha_num',
-			'telefono' 			=> 'required|digits:10',
-			'email'     		=> 'required|email|unique:turistas', 
-			'clave'				=> 'required|min:6|confirmed',
-			'clave_confirmation'=> 'required|min:6',
-			'acepto'			=> 'accepted'
+			'rol' 						=> 'required|exists:rol,id',
+			'descripcion_empresa' 		=> 'required|min:5|max:255',
+			'nombre_empresa'			=> 'required|min:5|max:20|alpha_num',
+			'nit'						=> 'required|min:5|max:20|alpha_num',
+			'nombre_representante'		=> 'required|min:5|max:20|alpha_num',	
+			'apellido_representante'	=> 'required|min:5|max:20|alpha_num',
+			'cedula'					=> 'required|max:20',
+			'email'     				=> 'required|email|unique:proveedor,correo',
+			'clave'						=> 'required|min:6|confirmed',
+			'clave_confirmation'		=> 'required|min:6',
+			'ubicacion'					=> 'required|exists:municipio,nombreMunicipio',
+			'acepto'					=> 'accepted'
 			);
 		$validator=\Validator::make($data, $rules);
 
@@ -75,20 +73,29 @@ class TuristaController extends Controller {
 		\Mail::send('emails.msgCinfirmacion', $cuerpo_mensaje, function($message) use ($request){
 			$message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
 			$message->subject('Confirmacón registro SIGIPT');
-			$message->to($request->email, $request->nombre);
+			$message->to($request->email, $request->nombre_representante);
 		});
+		
+		\SIGPT\Proveedor::create([				
+			'id_rol' 				=> $request['rol'],
+			'descripcion' 			=> $request['descripcion_empresa'],
+			'nombre_proveedor'		=> $request['nombre_empresa'],
+			'nit'					=> $request['nit'],
+			'nombre_representante'	=> $request['nombre_representante'],
+			'apellido'				=> $request['apellido_representante'],
+			'cedula'				=> $request['cedula'],
+			'correo'				=> $request['email'],
+			'clave'					=> bcrypt($request['clave']),
+			'ubicacion'				=> $request['ubicacion'],
+			]);
+		$roles =\DB::table('rol')->lists('rol', 'id');
+		$roles= array(0 => "Seleccione ... ") + $roles;
+		$selected2 = array();
 		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');
 		$municipios= array(0 => "Seleccione ... ") + $municipios;
 		$selected = array();
 		$mensaje="Se te ha enviado un correo de confirmacion";//"Registrado con exito";
-		\SIGPT\Turista::create([
-			'nombre'				 	=> $request['nombre'],
-			'apellido'				 	=> $request['apellido'],
-			'telefono'				 	=> $request['telefono'],
-			'email'	 					=> $request['email'],
-			'password'					=> bcrypt($request['clave'])
-			]);
-		return view('turista.create', compact('municipios', 'selected'))->with('mensaje', $mensaje);
+		return view('proveedor.create', compact('municipios', 'selected'), compact('roles', 'selected2'))->with('mensaje', $mensaje);
 	}
 
 	/**

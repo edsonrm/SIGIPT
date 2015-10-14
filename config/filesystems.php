@@ -42,13 +42,17 @@ return [
 	*/
 
 	'disks' => [
-
-		'local' => [
+//original
+	/*	'local' => [
 			'driver' => 'local',
 			'root'   => storage_path().'/app',
+		],*/
+		'local' => [
+		'driver' => 'local',
+		'root' => public_path().'/storage',
 		],
 
-		's3' => [
+		/*'s3' => [
 			'driver' => 's3',
 			'key'    => 'your-key',
 			'secret' => 'your-secret',
@@ -63,7 +67,7 @@ return [
 			'container' => 'your-container',
 			'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
 			'region'    => 'IAD',
-		],
+		],*/
 
 	],
 

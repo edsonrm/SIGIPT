@@ -26,7 +26,10 @@ class AdministracionController extends Controller {
 	 */
 	public function create()
 	{
-		return view('administracion.create');
+		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');
+		$municipios= array(0 => "Seleccione ... ") + $municipios;
+		$selected = array();
+		return view('administracion.create', compact('municipios', 'selected'));
 	}
 
 	/**
@@ -38,10 +41,10 @@ class AdministracionController extends Controller {
 	{
 		$data  = $request->all();
 		$rules = array(
-			'nombre' 			=> 'required|max:20|alpha_num',
+			'nombre' 			=> 'required|exists:municipio,nombreMunicipio|unique:administracions,nombre_administracion',
 			'email'     		=> 'required|email|unique:administracions', 
 			'clave'				=> 'required|min:6|confirmed',
-			'clave_confirmation'=> 'required|min:6',
+			//'clave_confirmation'=> 'required|min:6',
 			'acepto'			=> 'accepted'
 			);
 		$validator=\Validator::make($data, $rules);
@@ -59,7 +62,10 @@ class AdministracionController extends Controller {
 			'email'	 					=> $request['email'],
 			'password'					=> bcrypt($request['clave'])
 			]);
-		return "usuario registrado";
+		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');
+		$municipios= array(0 => "Seleccione ... ") + $municipios;
+		$selected = array();
+		return view('administracion.create', compact('municipios', 'selected'));
 	}
 
 	/**

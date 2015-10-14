@@ -14,8 +14,9 @@ return [
 	| Supported: "smtp", "mail", "sendmail", "mailgun", "mandrill", "log"
 	|
 	*/
+//'driver' => 'smtp',
 
-	'driver' => 'smtp',
+	'driver' => 'mailgun',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ return [
 	|
 	*/
 
-	'username' => null,
+	'username' => 'postmaster@sandbox4fd3cef0aeb24f5c9356806fb5ed3367.mailgun.org',//null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +94,7 @@ return [
 	|
 	*/
 
-	'password' => null,
+	'password' => 'ddd2eefebcbf40fd5d94e8f334c06482',//null,
 
 	/*
 	|--------------------------------------------------------------------------

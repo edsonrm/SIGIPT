@@ -26,9 +26,9 @@
     </div>
 </div>
 <div id="contentOuterSeparator"></div>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 <div class="container" id="bienvenido">
-
+<br><br><br>
     <div class="divPanel page-content">
 
         <div class="row-fluid">
@@ -45,8 +45,8 @@
                     <hr style="margin:45px 0 35px" />
 
                     <div class="lead">
-                        <h2>Lorem ipsum dolor sit amet.</h2> 
-                        <h3>Vivamus leo ante, consectetur sit amet vulputate vel, dapibus sit amet lectus.</h3>
+                        <h2>Trabaja con SIGIPT.</h2> 
+                        <h3>Conoce los lugares mas hermosos de nuestro país.</h3>
                     </div>
 
                     <div class="list_carousel responsive">

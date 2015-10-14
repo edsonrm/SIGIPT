@@ -31,14 +31,52 @@ Route::get('registro', function () {
 //LISTAS
 Route::resource('administracion', 'AdministracionController');
 Route::resource('turista', 'TuristaController');
+Route::resource('proveedor', 'ProveedorController');
 Route::resource('turistas', 'TuristaController@index');
-Route::get('registroMunicipio', function () {
+/*Route::get('registroMunicipio', function () {
 	return view('administracion.create');
-});
+});*/
+
 Route::get('terminos', function () {
 	return view('comun.TerminosCondiciones');
 });
+Route::get('registroTurista', 'TuristaController@create' );
+Route::get('registroMunicipio', 'AdministracionController@create' );
+Route::get('registroProveedor', 'ProveedorController@create' );
 /*Route::get('registroTurista', function () {
-	return view('turista.create');
+		$turistas =\DB::table('turistas')->lists('nombre', 'id');
+		$selected = array();
+		$turistas2 =\DB::table('administracions')->lists('nombre_administracion', 'id');
+		$selected2 = array();
+		return view('turista.create', compact('turistas', 'selected'), compact('turistas2', 'selected2'));
 });*/
-Route::resource('tur', 'TuristaController@create');
+//Route::resource('registroTurista', 'TuristaController@create');
+Route::post('send', ['as' => 'send', 'uses' => 'MailController@send'] );
+Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );
+Route::get('finRegistro/{confirma}', function($confirma){
+
+//	if (Hash::check($confirma, $hashedPassword))
+//		{
+    // The passwords match...
+//		}
+return 'se validará el correo '.$confirma;
+});
+
+//EJEMPLO SUBIR ARCHIVOS
+Route::get('formulario', 'StorageController@index');
+Route::post('storage/save', 'StorageController@save');
+//traer archivo
+Route::get('storage/{archivo}', function ($archivo) {
+     $public_path = public_path();
+     $url = $public_path.'/storage/'.$archivo;
+     //verificamos si el archivo existe y lo retornamos
+     if (Storage::exists($archivo))
+     {
+       return response()->download($url);
+     }
+     //si no se encuentra lanzamos un error 404.
+     abort(404);
+
+});
+Route::get('galeria', 'StorageController@index');
+// FIN EJEMPLO SUBIR
