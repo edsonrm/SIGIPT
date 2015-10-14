@@ -37,9 +37,6 @@ Route::resource('turistas', 'TuristaController@index');
 	return view('administracion.create');
 });*/
 
-Route::get('terminos', function () {
-	return view('comun.TerminosCondiciones');
-});
 Route::get('registroTurista', 'TuristaController@create' );
 Route::get('registroMunicipio', 'AdministracionController@create' );
 Route::get('registroProveedor', 'ProveedorController@create' );
