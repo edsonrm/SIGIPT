@@ -28,7 +28,9 @@ Route::get('inicio', function () {
 Route::get('registro', function () {
 	return view('turista.registro');
 });
+
 //LISTAS
+Route::resource('imagen', 'StorageController');
 Route::resource('administracion', 'AdministracionController');
 Route::resource('turista', 'TuristaController');
 Route::resource('proveedor', 'ProveedorController');
@@ -62,6 +64,7 @@ return 'se validará el correo '.$confirma;
 //EJEMPLO SUBIR ARCHIVOS
 Route::get('formulario', 'StorageController@index');
 Route::post('storage/save', 'StorageController@save');
+Route::post('storage/saveD', 'StorageController@saveDocumento');
 //traer archivo
 Route::get('storage/{archivo}', function ($archivo) {
      $public_path = public_path();
@@ -76,4 +79,5 @@ Route::get('storage/{archivo}', function ($archivo) {
 
 });
 Route::get('galeria', 'StorageController@index');
+Route::get('documentacion', 'StorageController@index2');
 // FIN EJEMPLO SUBIR

@@ -13,6 +13,9 @@
 
     <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
     <link href="scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -30,14 +33,15 @@
         <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
+     <!--ORIGINALES
     {!! Html::style('scripts/fontawesome/css/font-awesome.min.css') !!}
     {!! Html::style('scripts/carousel/style.css') !!}
-    <!--ORIGINALES
-    <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome.min.css">-->
+   -->
+    <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
         <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
-<!--ORIGINALES
+
 <link href="scripts/carousel/style.css" rel="stylesheet" type="text/css" />
 
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
@@ -47,7 +51,8 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
-    {!! Html::style('http://fonts.googleapis.com/css?family=Palatino+Linotype') !!}-->
+    <!--ORIGINALES
+    {!! Html::style('http://fonts.googleapis.com/css?family=Palatino+Linotype') !!}
 
     {!! Html::style('http://fonts.googleapis.com/css?family=Source+Sans+Pro') !!}
     {!! Html::style('http://fonts.googleapis.com/css?family=Open+Sans') !!}
@@ -55,7 +60,7 @@
     {!! Html::style('http://fonts.googleapis.com/css?family=Abel') !!}
     {!! Html::style('http://fonts.googleapis.com/css?family=Open+Sans') !!}
     {!! Html::style('styles/custom.css') !!}
-    
+    -->
 </head>
 <body id="pageBody">
 
@@ -67,6 +72,7 @@
                 <div class="span12">
 
                     <div id="divLogo" class="pull-left">
+                    <a href="inicio" id="divSiteTitle"><img src="images/udc.jpg" alt="SIGIPT" title="SIGIPT" width="50" height="50" /></a>
                         <a href="#" id="divSiteTitle">SIGIPT</a><br />
                         <a href="#" id="divTagLine">Turismo fácil</a>
                     </div>
@@ -85,7 +91,7 @@
                                     <ul class="dropdown-menu">
                             <li><a href="registroTurista">Turista</a></li>
                             <li><a href="registroMunicipio">Municipio</a></li>
-                            <li><a href="3-column.html">Three Column</a></li>
+                            <li><a href="registroProveedor">Proveedor</a></li>
                             <li><a href="../documentation/index.html">Documentation</a></li>
                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
@@ -97,8 +103,8 @@
                             </li>
                             </ul>
                                 </li>
-                                <li class="dropdown"><a href="gallery.html">Gallery</a></li>
-                                <li class="dropdown"><a href="contact.php">Contact</a></li>
+                                <li class="dropdown"><a href="galeria">Galería</a></li>
+                                <li class="dropdown"><a href="contact">Contacto</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,7 +116,11 @@
 
     </div>
 </div>
-    @yield('content')
+    
+@yield('content')
+
+</div>
+    
 <div id="footerInnerSeparator"></div>
     </div>
 
@@ -159,12 +169,16 @@
                     </p>
 
                 </div>-->
-                <div class="span3" id="footerArea3">
+                
+                <div class="span3" id="footerArea2">
 
                     <h3>GISTFA</h3> 
                     <p style="text-align: justify;">Como apoyo a la actividad investigativa desarrollada en el programa de ingeniería de sistemas, extensión Facatativá, se crea con aval de Colciencias, en el año 2010 el grupo de investigación de sistemas y tecnología de Facatativá (GISTFA). En el año 2012 GISTFA abandona el concepto de grupo de estudio con el que nació para dar paso a la creación de propuestas serias hacia la solución de problemas.
                     </p>
 
+                </div>
+                <div class="span3" id="footerArea3">
+                <img src="images/udec.png" alt="SIGIPT" title="SIGIPT" class="pull-center" />
                 </div>
                 <div class="span3" id="footerArea4">
 

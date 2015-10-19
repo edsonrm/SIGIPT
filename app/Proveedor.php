@@ -4,10 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model {
 
-	protected $table = "proveedor";
-	protected $fillable = [	'id_rol', 
+	protected $table = "empresa_turistica";
+	protected $fillable = [	'id_rol_empresa', 
 							'descripcion', 
-							'nombre_proveedor',
+							'nombre',
 							'nit',
 							'nombre_representante',
 							'apellido',

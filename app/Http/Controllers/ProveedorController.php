@@ -27,7 +27,7 @@ class ProveedorController extends Controller {
 		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');
 		$municipios= array(0 => "Seleccione ... ") + $municipios;
 		$selected = array();
-		$roles =\DB::table('rol')->lists('rol', 'id');
+		$roles =\DB::table('rol_empresa')->lists('rol_empresa', 'id');
 		$roles= array(0 => "Seleccione ... ") + $roles;
 		$selected2 = array();
 		$mensaje="Registra tus datos";
@@ -43,14 +43,14 @@ class ProveedorController extends Controller {
 	{
 		$data  = $request->all();
 		$rules = array(
-			'rol' 						=> 'required|exists:rol,id',
+			'rol' 						=> 'required|exists:rol_empresa,id',
 			'descripcion_empresa' 		=> 'required|min:5|max:255',
 			'nombre_empresa'			=> 'required|min:5|max:20|alpha_num',
 			'nit'						=> 'required|min:5|max:20|alpha_num',
 			'nombre_representante'		=> 'required|min:5|max:20|alpha_num',	
 			'apellido_representante'	=> 'required|min:5|max:20|alpha_num',
 			'cedula'					=> 'required|max:20',
-			'email'     				=> 'required|email|unique:proveedor,correo',
+			'email'     				=> 'required|email|unique:empresa_turistica,correo',
 			'clave'						=> 'required|min:6|confirmed',
 			'clave_confirmation'		=> 'required|min:6',
 			'ubicacion'					=> 'required|exists:municipio,nombreMunicipio',
@@ -70,16 +70,16 @@ class ProveedorController extends Controller {
 		'titulo' 	=> 'Debes confirmar el registro a SIGIP.com entrando en el siguiente link: ',
 		'contenido' => 'sigpt.dev/finRegistro/'.$ruta
 		];
-		\Mail::send('emails.msgCinfirmacion', $cuerpo_mensaje, function($message) use ($request){
+		/*\Mail::send('emails.msgCinfirmacion', $cuerpo_mensaje, function($message) use ($request){
 			$message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
 			$message->subject('Confirmacón registro SIGIPT');
 			$message->to($request->email, $request->nombre_representante);
-		});
+		});*/
 		
 		\SIGPT\Proveedor::create([				
-			'id_rol' 				=> $request['rol'],
+			'id_rol_empresa' 		=> $request['rol'],
 			'descripcion' 			=> $request['descripcion_empresa'],
-			'nombre_proveedor'		=> $request['nombre_empresa'],
+			'nombre'				=> $request['nombre_empresa'],
 			'nit'					=> $request['nit'],
 			'nombre_representante'	=> $request['nombre_representante'],
 			'apellido'				=> $request['apellido_representante'],
@@ -88,7 +88,7 @@ class ProveedorController extends Controller {
 			'clave'					=> bcrypt($request['clave']),
 			'ubicacion'				=> $request['ubicacion'],
 			]);
-		$roles =\DB::table('rol')->lists('rol', 'id');
+		$roles =\DB::table('rol_empresa')->lists('rol_empresa', 'id');
 		$roles= array(0 => "Seleccione ... ") + $roles;
 		$selected2 = array();
 		$municipios =\DB::table('municipio')->orderBy('nombreMunicipio', 'asc')->lists('nombreMunicipio', 'nombreMunicipio');

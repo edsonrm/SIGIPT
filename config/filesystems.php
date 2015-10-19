@@ -51,6 +51,14 @@ return [
 		'driver' => 'local',
 		'root' => public_path().'/storage',
 		],
+		'imagenes' => [
+		'driver' => 'local',
+		'root' => public_path().'/storage/imagenes',
+		],
+		'documentos' => [
+		'driver' => 'local',
+		'root' => public_path().'/storage/documentos',
+		],
 
 		/*'s3' => [
 			'driver' => 's3',

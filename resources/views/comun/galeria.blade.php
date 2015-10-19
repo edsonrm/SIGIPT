@@ -65,7 +65,7 @@
                                     <ul class="dropdown-menu">
                             <li><a href="registroTurista">Turista</a></li>
                             <li><a href="registroMunicipio">Municipio</a></li>
-                            <li><a href="3-column.html">Three Column</a></li>
+                            <li><a href="registroProveedor">Proveedor</a></li>
                             <li><a href="../documentation/index.html">Documentation</a></li>
                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
@@ -77,8 +77,8 @@
                             </li>
                             </ul>
                                 </li>
-                                <li class="dropdown"><a href="gallery.html">Gallery</a></li>
-                                <li class="dropdown"><a href="contact.php">Contact</a></li>
+                                <li class="dropdown"><a href="galeria">Galería</a></li>
+                                <li class="dropdown"><a href="contact">Contacto</a></li>
                             </ul>
                         </div>
                     </div>
@@ -116,8 +116,12 @@
                         </div>
                 @endif
                 @if ($mensaje)
-                    {{ $mensaje }}
+                        <div class="alert alert-success">
+                            <strong>Yhea!</strong> {{$mensaje}}.<br><br>
+                            
+                        </div>
                 @endif
+          
                 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -177,8 +181,8 @@
 
                          @foreach ($imagenes as $imagen )
                          <li>
-                            <a href="storage/{{ $imagen->ruta }}" title="{{ $imagen->nombre }}" rel="prettyPhoto[gallery1]"><img src="storage/{{ $imagen->ruta }}" alt="{{ $imagen->nombre }}" title="{{ $imagen->nombre }}" height="420" width="420"/></a>
-                            <div class="meta"><span>{{$imagen->created_at}}</span><span class="pull-right">By Bob</span></div>
+                            <a href="storage/imagenes/{{ $imagen->ruta }}" title="{{ $imagen->nombre }}" rel="prettyPhoto[gallery1]"><img src="storage/imagenes/{{ $imagen->ruta }}" alt="{{ $imagen->nombre }}" title="{{ $imagen->nombre }}" height="420" width="420"/></a>
+                            <div class="meta"><span>{{$imagen->created_at}}</span>{!! link_to_route('imagen.edit', $title = 'editar', $parameters = $imagen->id, $attributes = ['class' => 'pull-right']) !!}<!--<span class="pull-right">By Bob</span>--></div>
                             <h4><a href="#">{{ $imagen->nombre }}</a></h4>
                             <p>{{ $imagen->descripcion }}</p>
                         </li> 
