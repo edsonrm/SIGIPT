@@ -1,0 +1,1 @@
+$('.btn.danger').button('toggle').addClass('fat') 	

@@ -11,10 +11,12 @@
 |
 */
 
-
 Route::get('control', 'PruebaController@index');
 
 Route::get('/', 'WelcomeController@index');
+Route::get('index_2', 'WelcomeController@index_final');
+Route::get('index_3', 'WelcomeController@prueba');
+
 
 Route::get('home', 'HomeController@index');
 

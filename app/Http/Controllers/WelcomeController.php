@@ -32,5 +32,18 @@ class WelcomeController extends Controller {
 	{
 		return view('comun.inicio');
 	}
+	public function index_final()
+	{
+		return view('layouts.index');
+	}
+	/*public function prueba()
+	{
+		return view('index');
+	}*/
+
+	public function prueba()
+	{
+		return view('layouts.index2');
+	}
 
 }
